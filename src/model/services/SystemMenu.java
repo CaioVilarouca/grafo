@@ -1,0 +1,52 @@
+package model.services;
+
+import java.util.Scanner;
+import model.exception.DominException;
+
+public class SystemMenu {	
+	private Integer option;
+	
+	private Scanner scanner = new Scanner(System.in);
+	
+	public Integer getOption() {
+		return option;
+	}
+
+	public void setOption(Integer option) {
+		this.option = option;
+	}
+	
+	// Regras e negócio 
+	public void validationOption() {
+		if (getOption() > 5) {
+			throw new  DominException("(Menu entre 1 e 5)");
+		}
+		if (getOption() < 0) {
+			throw new  DominException("(Número negativo)");
+		}
+		if (getOption() == 0) {
+			throw new  DominException("(Menu entre 1 e 5): informado: " + getOption());
+		}
+	}
+
+	public int menuOption() {
+		System.out.print("====== MENU DE CONTROLE ======="
+				+ "\n= 1: Inicializar a Matriz     ="
+				+ "\n= 2: Imprimir a Matriz        ="
+				+ "\n= 3: Inserir valor na Matriz  ="
+				+ "\n= 4: Identificar o Menor      ="
+				+ "\n= 5: Sair do Programa         ="
+				+ "\n==============================="
+				+"\n     Informe a opção: ");
+		setOption(scanner.nextInt());
+		System.out.println("Menu: " + option);
+		validationOption();
+		return getOption();
+	}
+	
+	public void menu() {
+		do {
+			menuOption();
+		}while(getOption() != 5);
+	}
+}
