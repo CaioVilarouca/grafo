@@ -1,11 +1,14 @@
 package model.services;
 
 import java.util.Scanner;
+
+import model.entities.Matrix;
 import model.exception.DominException;
 
 public class SystemMenu {	
 	private Integer option;
 	
+	private Matrix matrix = new Matrix();
 	private Scanner scanner = new Scanner(System.in);
 	
 	public Integer getOption() {
@@ -44,9 +47,40 @@ public class SystemMenu {
 		return getOption();
 	}
 	
+	public void sizeMatrix() {
+		System.out.print("Informe o tamanho da matriz:");
+		matrix.setSize(scanner.nextInt());
+		
+		// Regra de négocio
+		if (matrix.getSize() == 0) {
+			throw new  DominException("Tamanho não informado: " + matrix.getSize());
+		}
+		
+		if (matrix.getSize() < 0) {
+			throw new  DominException("(Número negativo)");
+		}
+		
+		System.out.println("Tamanho: " + matrix.getSize() + " status[Salvo]");
+	}
+	
 	public void menu() {
 		do {
 			menuOption();
+			
+			switch (getOption()) {
+			case 1:
+				sizeMatrix();
+				break;
+			case 2:
+				System.out.println("2");
+				break;
+			case 3:
+				System.out.println("3");
+				break;
+			case 4:
+				System.out.println("4");
+				break;
+			}
 		}while(getOption() != 5);
 	}
 }

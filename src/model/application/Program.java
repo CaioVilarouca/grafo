@@ -15,7 +15,7 @@ public class Program {
 			systemMenu.menu();
 		}
 		catch (DominException e) {
-			System.out.println("Erro na entrada de atributos:" + e.getMessage());
+			System.out.println("Erro na entrada de atributos: " + e.getMessage());
 		}
 		catch (InputMismatchException e) {
 			System.out.println("Erro na entrada de atributos:");
